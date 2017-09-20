@@ -19,6 +19,16 @@ app.config(function routesConfig($stateProvider, $urlRouterProvider) {
             controllerAs: 'vm'
           }
         }
+      })
+      .state('bus.trip', {
+        url: '/trip',
+        views: {
+          'bus-trip': {
+            templateUrl: 'modules/bus/html/trip.html',
+            controller: 'busController',
+            controllerAs: 'vm'
+          }
+        }
       });
 
     // if none of the above states are matched, use this as the fallback
