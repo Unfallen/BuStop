@@ -13,15 +13,15 @@ function busController($scope, $cordovaGeolocation){
       zoom: 16,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-    $scope.marker = new google.maps.Marker({
+    vm.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    vm.marker = new google.maps.Marker({
       position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-      map: $scope.map,
+      map: vm.map,
       title: 'Holas!'
     }, function(err) {
       console.err(err);
     });
-    $scope.marker.setMap(vm.map);
+    vm.marker.setMap(vm.map);
 
   }, function(error){
 
