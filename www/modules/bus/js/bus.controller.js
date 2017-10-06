@@ -1,30 +1,39 @@
 app.controller('busController', busController);
 
 function busController($scope, $cordovaGeolocation){
-  var vm = this;
+    var vm = this;
 
-  vm.driver = "Jose Rizal";
-  var options = {timeout: 10000, enableHighAccuracy: true};
+    vm.driver = "Jose Rizal";
 
-  $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+    vm.startTrip = startTrip;
+    vm.initMap = initMap;
+    var options = {timeout: 10000, enableHighAccuracy: true};
 
-    var mapOptions = {
-      center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-      zoom: 16,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    vm.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-    vm.marker = new google.maps.Marker({
-      position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-      map: vm.map,
-      title: 'Holas!'
-    }, function(err) {
-      console.err(err);
-    });
-    vm.marker.setMap(vm.map);
+    function initMap() {
+        $cordovaGeolocation.getCurrentPosition(options).then(function(position){
 
-  }, function(error){
+            var mapOptions = {
+                center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            vm.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+            vm.marker = new google.maps.Marker({
+                position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                map: vm.map,
+                title: 'Holas!'
+            }, function(err) {
+                console.err(err);
+            });
+            vm.marker.setMap(vm.map);
 
-    console.log("Could not get location");
-  });
+        }, function(error){
+
+            console.log("Could not get location");
+        });
+    }
+
+    function startTrip() {
+
+    }
 }
