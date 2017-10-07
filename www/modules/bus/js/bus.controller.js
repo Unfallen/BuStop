@@ -1,12 +1,17 @@
 app.controller('busController', busController);
 
-function busController($scope, $cordovaGeolocation){
+function busController(BusService, $http, $q, $scope, $stateParams, $cordovaGeolocation){
     var vm = this;
-
+    var userId = $stateParams.userId;
+    var def = $q.defer();
     vm.driver = "Jose Rizal";
 
     vm.startTrip = startTrip;
     vm.initMap = initMap;
+    vm.getDestinations = getDestinations;
+
+    getDestinations();
+
     var options = {timeout: 10000, enableHighAccuracy: true};
 
     function initMap() {
@@ -33,7 +38,27 @@ function busController($scope, $cordovaGeolocation){
         });
     }
 
-    function startTrip() {
+    function getDestinations() {
 
+        BusService.getDestinations().then(function (response) {
+            vm.destinations = response.data;
+        });
+        //console.log(vm.destinations);
+    }
+
+    function startTrip() {
+        var data = {
+            destination : vm.destination,
+            capacity: vm.capacity,
+            extra_capacity: vm.extra_capacity
+        };
+        //return $http.get('http://192.168.99.100/api/authenticate/user');
+        $http.post('http://192.168.99.100/api/bus/'+ userId +'/newTrip', data).then(function (success) {
+            def.resolve(success);
+
+        });
+        def.promise.then(function (response) {
+            console.log(response.data);
+        });
     }
 }

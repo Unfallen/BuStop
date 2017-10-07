@@ -1,16 +1,12 @@
-app.run(['$rootScope', '$location', 'Auth', function ($rootScope, $location) {
-    console.log('DENY');
-    $rootScope.$on('$routeChangeStart', function (event) {
-        console.log('DENY');
-        var loggedUser = AuthService.getLoggedUser();
-        if (!loggedUser.isAuthenticated()) {
-            console.log('DENY');
-            event.preventDefault();
-            $location.path('/login');
-        }
-        else {
-            console.log('ALLOW');
-            $location.path('/home');
+app.run(function ($rootScope, $location) {
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+        //print here
+        if (!localStorage.getItem('isAuthenticated')) {
+            $location.url('/login');
+        } else {
+            if ( toState.name === "login") {
+                event.preventDefault();
+            }
         }
     });
-}]);
+});

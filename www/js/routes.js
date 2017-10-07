@@ -1,4 +1,5 @@
-app.config(function routesConfig($stateProvider, $urlRouterProvider, $authProvider) {
+app.config(function routesConfig($stateProvider, $urlRouterProvider, $authProvider, $ionicConfigProvider) {
+    $ionicConfigProvider.tabs.position('bottom');
 
     $authProvider.baseUrl = 'http://192.168.99.100';
     $authProvider.loginUrl = '/api/login';
@@ -14,7 +15,7 @@ app.config(function routesConfig($stateProvider, $urlRouterProvider, $authProvid
         controllerAs: 'vm'
     })
     .state('bus',{
-        url: '/bus',
+        url: '/bus/:userId',
         abstract: true,
         templateUrl: 'templates/bus.html'
     })
@@ -33,7 +34,7 @@ app.config(function routesConfig($stateProvider, $urlRouterProvider, $authProvid
         views: {
             'bus-dashboard': {
                 templateUrl: 'modules/bus/html/newTrip.html',
-                controller: 'loginController',
+                controller: 'busController',
                 controllerAs: 'vm'
             }
         }
@@ -44,6 +45,16 @@ app.config(function routesConfig($stateProvider, $urlRouterProvider, $authProvid
             'bus-trip': {
                 templateUrl: 'modules/bus/html/trip.html',
                 controller: 'busController',
+                controllerAs: 'vm'
+            }
+        }
+    })
+    .state('bus.account', {
+        url: '/account',
+        views: {
+            'bus-account': {
+                templateUrl: 'modules/bus/html/account.html',
+                controller: 'accountController',
                 controllerAs: 'vm'
             }
         }
