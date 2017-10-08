@@ -1,0 +1,78 @@
+<ion-view view-title="Bus Registration" name="bus-registration" ng-init="vm.getCompanies()">
+    <ion-content class="padding">
+        <div class="list list-inset form-group">
+            <div class="item item-divider">
+                Bus Details
+            </div>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Bus Company
+                </div>
+                <select class="form-control" ng-model="vm.busCompany">
+                    <option ng-repeat="company in vm.companyList track by $index" value="{{ company.id }}">{{company.name}}</option>
+                </select>
+            </label>
+            <label class="item item-input">
+                <div class="input-label">
+                    Bus Number
+                </div>
+                <input type="text" class="form-control" placeholder="Bus Number" ng-model="vm.busNumber">
+            </label>
+            <label class="item item-input">
+                <div class="input-label">
+                    Capacity
+                </div>
+                <input type="text" class="form-control" placeholder="Capacity" ng-model="vm.busCapacity">
+            </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Bus Type
+                </div>
+                <select class="form-control" ng-model="vm.busType">
+                    <option value="aircon}">Air-conditioned</option>
+                    <option value="normal">Normal</option>
+                </select>
+            </label>
+            <div class="item item-divider">
+                Driver Details Details
+            </div>
+            <label class="item item-input">
+                <div class="input-label">
+                    Driver's Name
+                </div>
+                <input type="text" class="form-control" placeholder="Name" ng-model="vm.driverName">
+            </label>
+            <label class="item item-input">
+                <div class="input-label">
+                    Driver's Address
+                </div>
+                <input type="text" class="form-control" placeholder="Address" ng-model="vm.driverAddress">
+            </label>
+            <label class="item item-input">
+                <div class="input-label">
+                    Driver's Age
+                </div>
+                <input type="text" class="form-control" placeholder="Age" ng-model="vm.driverAge">
+            </label>
+            <label class="item item-input">
+                <div class="input-label">
+                    Username
+                </div>
+                <input type="text" class="form-control" placeholder="Username" ng-model="vm.username">
+            </label>
+            <label class="item item-input">
+                <div class="input-label">
+                    Password
+                </div>
+                <input type="password" class="form-control" placeholder="Password" ng-model="vm.password">
+            </label>
+            <label class="item item-input">
+                <div class="input-label">
+                    Confirm Password
+                </div>
+                <input type="password" class="form-control" placeholder="Confirm Password" ng-model="vm.confirmPassword">
+            </label>
+        </div>
+        <button class="button button-block button-calm" ng-click="vm.register()">Register</button>
+    </ion-content>
+</ion-view>
