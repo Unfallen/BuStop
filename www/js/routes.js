@@ -70,7 +70,23 @@ app.config(function routesConfig($stateProvider, $urlRouterProvider, $authProvid
                     controllerAs: 'vm'
                 }
             }
-        });
+        })
+        .state('passenger',{
+            url: '/passenger/:userId',
+            abstract: true,
+            templateUrl: 'templates/passenger.html'
+        })
+        .state('passenger.dashboard', {
+            url: '/dashboard',
+            views: {
+                'passenger': {
+                    templateUrl: 'modules/passenger/html/dashboard.html',
+                    controller: 'passengerController',
+                    controllerAs: 'vm'
+                }
+            }
+        })
+    ;
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');

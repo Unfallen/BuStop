@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('BuStop', ['ionic', 'ngCordova', 'satellizer']);
+var app = angular.module('BuStop', ['ionic', 'ngCordova', 'satellizer', 'oitozero.ngSweetAlert']);
 
 app.run(function($ionicPlatform, $rootScope) {
     $ionicPlatform.ready(function() {

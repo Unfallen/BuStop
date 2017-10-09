@@ -1,0 +1,45 @@
+<ion-view view-title="Dashboard" ng-init="vm.initMap()">
+    <ion-nav-buttons side="right">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="">
+        <div class="card form-group app-font-8">
+            <div class="item item-input-inset text-center item-select no-padding">
+                <div class="input-label">
+                    Bus
+                </div>
+                <select class="form-control" ng-model="vm.busCompany">
+                    <option ng-repeat="bus in vm.busList track by $index" value="{{ bus.name }}">{{bus.name}}</option>
+                </select>
+            </div>
+            <div class="item item-input-inset text-center item-select no-padding">
+                <div class="input-label">
+                    Destination
+                </div>
+                <select class="form-control" ng-model="vm.destination">
+                    <option ng-repeat="destination in vm.destinationList track by $index" value="{{ destination.id }}">{{destination.destination}} via {{destination.via}}</option>
+                </select>
+
+            </div>
+            <div class="item item-input-inset text-center item-select no-padding">
+                <div class="input-label">
+                    Bus Type
+                </div>
+                <select class="form-control" ng-model="vm.busType">
+                    <option value="aircon">Air-conditioned</option>
+                    <option value="normal">Normal</option>
+                </select>
+            </div>
+            <div class="row">
+                <div class="col text-center item item-input-inset no-padding">
+                    <button class="button button-outline button-stable button-small" ng-click="vm.searchTrip()">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="height: 450px">
+            <div id="passengerMap" data-tap-disabled="true"></div>
+        </div>
+    </ion-content>
+</ion-view>
+
+

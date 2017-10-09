@@ -3,11 +3,16 @@ app.run(function ($rootScope, $location) {
         //print here
         if (!localStorage.getItem('isAuthenticated')) {
             if(toState.name !== "bus-registration" && toState.name !== 'registration') {
+
                 $location.url('/login');
             }
         } else {
             if ( toState.name === "login" || toState.name === "bus-registration" || toState.name === 'registration') {
-                event.preventDefault();
+                if (fromState.name === "") {
+                    $location.url('/bus/'+ localStorage.getItem('userId') +'/dashboard' )
+                } else {
+                    event.preventDefault();
+                }
             }
         }
     });

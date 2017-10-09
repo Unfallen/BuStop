@@ -5,19 +5,18 @@ navigation history that also transitions its views in and out.
 -->
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
-  <!-- Dashboard Tab -->
     <!-- Dashboard Tab -->
-    <ion-tab title="Home" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" ui-sref="bus.dashboard({userId: userId})">
+    <ion-tab title="Home" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" ui-sref="bus.dashboard(userId)">
         <ion-nav-view name="bus-dashboard"></ion-nav-view>
     </ion-tab>
 
     <!-- Chats Tab -->
-    <ion-tab title="Trip" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" ui-sref="bus.trip({userId: userId})">
+    <ion-tab title="Trip" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" ui-sref="bus.trip(userId)">
         <ion-nav-view name="bus-trip"></ion-nav-view>
     </ion-tab>
 
     <!-- Account Tab -->
-    <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" ui-sref="bus.account({userId: userId})">
+    <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" ui-sref="bus.account(userId)">
         <ion-nav-view name="bus-account"></ion-nav-view>
     </ion-tab>
 

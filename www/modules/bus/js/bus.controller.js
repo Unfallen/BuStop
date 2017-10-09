@@ -33,9 +33,12 @@ function busController(BusService, $http, $q, $scope, $stateParams, $cordovaGeol
             vm.marker.setMap(vm.map);
 
         }, function(error){
-
             console.log("Could not get location");
         });
+    }
+    
+    function initSearch() {
+        
     }
 
     function getDestinations() {
