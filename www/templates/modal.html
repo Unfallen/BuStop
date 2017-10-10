@@ -1,0 +1,44 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class = "title">Description</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()" style="color: black">Cancel</button>
+    </ion-header-bar>
+
+    <ion-content class="padding">
+        <div class="card">
+            <div class="item item-text-wrap">
+                Bus Number: <b>{{ vm.busNumber }}</b> <br>
+                Available Seats: <b> {{ vm.availableSeats }}</b>
+            </div>
+        </div>
+        <div class="list list-inset form-group">
+            <div class="item item-divider">
+                Upper clothes
+            </div>
+            <label class="item item-input">
+                <input type="text" class="form-control" placeholder="type Eg. Shirt, Blouse" ng-model="vm.shirt">
+            </label>
+            <label class="item item-input">
+                <input type="text" class="form-control" placeholder="Color" ng-model="vm.shirtColor">
+            </label>
+            <div class="item item-divider">
+                Lower clothes
+            </div>
+            <label class="item item-input">
+                <input type="text" class="form-control" placeholder="type Eg. Pants, Shorts" ng-model="vm.lower">
+            </label>
+            <label class="item item-input">
+                <input type="text" class="form-control" placeholder="Color" ng-model="vm.lowerColor">
+            </label>
+            <div class="item item-divider">
+                Land Mark
+            </div>
+            <label class="item item-input">
+                <input type="text" class="form-control" placeholder="Landmark" ng-model="vm.landmark">
+            </label>
+        </div>
+        <button class="button button-block button-calm" ng-click="vm.bookTrip()">Book Now</button>
+
+    </ion-content>
+</ion-modal-view>
+
