@@ -28,6 +28,7 @@
                 console.log(response);
                 rScope.currentUser = response.data.user;
 
+                localStorage.setItem('hasTrip', response.data.hasTrip);
                 localStorage.setItem('isAuthenticated', true);
                 localStorage.setItem('userId', rScope.currentUser.id);
                 localStorage.setItem('userName', rScope.currentUser.username);
@@ -38,8 +39,14 @@
                 if (localStorage.userType === "driver") {
                     $state.go('bus.dashboard', {userId: rScope.currentUser.id});
                 } else {
-                    $state.go('passenger.dashboard', {userId: rScope.currentUser.id});
+                    if (response.data.hasTrip) {
+                        $state.go('passenger.booking', {userId: rScope.currentUser.id, tripId: response.data.tripId});
+
+                    } else {
+                        $state.go('passenger.dashboard', {userId: rScope.currentUser.id});
+                    }
                 }
+
             });
 
         }

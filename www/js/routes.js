@@ -86,7 +86,16 @@ app.config(function routesConfig($stateProvider, $urlRouterProvider, $authProvid
                 }
             }
         })
-    ;
+        .state('passenger.booking', {
+            url: '/booking/:tripId',
+            views: {
+                'passenger': {
+                    templateUrl: 'modules/passenger/html/monitorBus.html',
+                    controller: 'passengerController',
+                    controllerAs: 'vm'
+                }
+            }
+        });
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
