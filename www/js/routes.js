@@ -34,39 +34,19 @@ app.config(function routesConfig($stateProvider, $urlRouterProvider, $authProvid
         .state('bus.dashboard', {
             url: '/dashboard',
             views: {
-                'bus-dashboard': {
+                'bus': {
                     templateUrl: 'modules/bus/html/dashboard.html',
                     controller: 'busController',
                     controllerAs: 'vm'
                 }
             }
         })
-        .state('bus.newTrip', {
-            url: '/newTrip',
-            views: {
-                'bus-dashboard': {
-                    templateUrl: 'modules/bus/html/newTrip.html',
-                    controller: 'busController',
-                    controllerAs: 'vm'
-                }
-            }
-        })
         .state('bus.trip', {
-            url: '/trip',
+            url: '/trip/:tripId',
             views: {
-                'bus-trip': {
+                'bus': {
                     templateUrl: 'modules/bus/html/trip.html',
-                    controller: 'busController',
-                    controllerAs: 'vm'
-                }
-            }
-        })
-        .state('bus.account', {
-            url: '/account',
-            views: {
-                'bus-account': {
-                    templateUrl: 'modules/bus/html/account.html',
-                    controller: 'accountController',
+                    controller: 'busTripController',
                     controllerAs: 'vm'
                 }
             }
@@ -91,7 +71,7 @@ app.config(function routesConfig($stateProvider, $urlRouterProvider, $authProvid
             views: {
                 'passenger': {
                     templateUrl: 'modules/passenger/html/monitorBus.html',
-                    controller: 'passengerController',
+                    controller: 'passengerBookingController',
                     controllerAs: 'vm'
                 }
             }

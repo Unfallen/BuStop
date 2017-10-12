@@ -1,14 +1,35 @@
 <ion-view view-title="Dashboard">
     <ion-nav-buttons side="right">
-        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+        <button menu-toggle="left" class="button button-icon icon ion-log-out" ng-click="vm.logout()"></button>
     </ion-nav-buttons>
-  <ion-content class="padding">
-    <h2>Welcome to BuStop, {{ vm.driver }}</h2>
-      <div class="block">
-          <a class="btn btn-default" ui-sref="bus.newTrip">
-              New Trip
-          </a>
+  <ion-content class="padding" ng-init="vm.getDestinations()">
+      <div ng-if="vm.hasTrip  == 'false'">
+          <div class="list list-inset form-group">
+              <label class="item item-input item-select">
+                  <div class="input-label">
+                      Destination
+                  </div>
+                  <select class="form-control" ng-model="vm.destination">
+                      <option ng-repeat="destination in vm.destinations track by $index" value="{{ destination.id }}">{{destination.destination}} via {{ destination.via }}</option>
+                  </select>
+              </label>
+              <label class="item item-input">
+                  <div class="input-label">
+                      Capacity
+                  </div>
+                  <input type="text" class="form-control" placeholder="Capacity" ng-model="vm.capacity">
+              </label>
+              <label class="item item-input">
+                  <div class="input-label">
+                      Extra Capacity
+                  </div>
+                  <input type="text" class="form-control" placeholder="Extra Capacity" ng-model="vm.extraCapacity">
+              </label>
+          </div>
+          <button class="button button-block button-calm" ng-click="vm.startTrip()">Start Trip</button>
       </div>
-    </p>
+      <div ng-if="vm.hasTrip  == 'true'">
+          <button class="button button-block button-calm" ng-click="vm.startTrip()">Start Trip</button>
+      </div>
   </ion-content>
 </ion-view>

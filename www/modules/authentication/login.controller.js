@@ -3,7 +3,7 @@
 
     app.controller('loginController', loginController);
 
-    function loginController(SweetAlert, $auth, $state, $http, $rootScope){
+    function loginController(SweetAlert, $auth, $ionicLoading, $state, $http, $rootScope){
         var vm = this;
         var rScope = $rootScope;
 
@@ -15,7 +15,13 @@
                 username: vm.username,
                 password: vm.password
             }
-
+            $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0
+            });
             // Use Satellizer's $auth service to login
             $auth.login(credentials).then(function(data) {
 
@@ -36,8 +42,14 @@
 
                 vm.loginError = false;
                 vm.loginErrorText = '';
+                $ionicLoading.hide();
                 if (localStorage.userType === "driver") {
-                    $state.go('bus.dashboard', {userId: rScope.currentUser.id});
+                    if (response.data.hasTrip) {
+                        $state.go('bus.trip', {userId: rScope.currentUser.id, tripId: response.data.tripId});
+                    } else {
+
+                        $state.go('bus.dashboard', {userId: rScope.currentUser.id});
+                    }
                 } else {
                     if (response.data.hasTrip) {
                         $state.go('passenger.booking', {userId: rScope.currentUser.id, tripId: response.data.tripId});
